@@ -251,6 +251,22 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0C80]" />
         </div>
 
+        {/* 4 Feature Columns Bar dinaikkan ke bagian atas banner hero */}
+        <div className="relative z-20 border-b border-stone-800/80 bg-[#0F0D0C]/85 backdrop-blur-md">
+          <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HIGHLIGHT_FEATURES.map((item, idx) => (
+              <div key={idx} className="p-2 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-4">
+                <h3 className="font-extrabold text-amber-400 text-xs sm:text-sm uppercase tracking-wider">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-stone-300 mt-1 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-6 text-left">
             {/* Judul utama yang proporsional dan tidak maksa */}
@@ -284,22 +300,6 @@ export default async function HomePage() {
                 <span>Masuk Dashboard</span>
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* 4 Feature Columns Bar (Desain teks bersih tanpa ikon AI) */}
-        <div className="relative z-20 border-t border-stone-800 bg-[#0F0D0C]/95 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HIGHLIGHT_FEATURES.map((item, idx) => (
-              <div key={idx} className="p-2 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-4">
-                <h3 className="font-extrabold text-amber-400 text-sm uppercase tracking-wider">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-stone-300 mt-1 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
