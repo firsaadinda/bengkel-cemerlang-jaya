@@ -54,12 +54,12 @@ export function Sidebar({ profile }: SidebarProps) {
       <div>
         {/* Brand / Logo */}
         <div className="p-5 flex items-center gap-3 border-b border-[#EAF2FA]">
-          <div className="w-10 h-10 rounded-xl bg-[#2196F3] flex items-center justify-center text-white shadow-sm shadow-blue-200">
+          <div className="w-10 h-10 rounded-xl bg-rose-700 flex items-center justify-center text-white shadow-sm ring-1 ring-amber-400/30">
             <Car className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="font-bold text-sm tracking-tight text-[#212121]">Cemerlang Jaya</h1>
-            <p className="text-[11px] text-[#757575] font-medium uppercase tracking-wider">Motor</p>
+            <h1 className="font-bold text-sm tracking-tight text-stone-900">Cemerlang Jaya</h1>
+            <p className="text-[11px] text-rose-700 font-bold uppercase tracking-wider">Spesialis Mobil</p>
           </div>
         </div>
 
@@ -79,8 +79,8 @@ export function Sidebar({ profile }: SidebarProps) {
                 className={cn(
                   'flex items-center gap-3 px-3.5 py-2.5 rounded-[10px] text-xs font-medium transition-colors',
                   isActive
-                    ? 'bg-[#DCEBFB] text-[#1976D2] font-semibold'
-                    : 'text-[#4A5565] hover:bg-[#F2F9FE] hover:text-[#212121]'
+                    ? 'bg-rose-50 text-rose-700 font-semibold border-r-2 border-rose-700'
+                    : 'text-stone-600 hover:bg-stone-50 hover:text-rose-700'
                 )}
               >
                 <Icon
