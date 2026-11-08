@@ -232,9 +232,9 @@ export default async function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION: GearPro Big Banner Style with User's Uploaded Engine Repair Photo */}
-      <section className="relative bg-[#0F0D0C] text-white overflow-hidden">
-        {/* User uploaded natural mechanic repair photo as background - pas natural */}
+      {/* HERO SECTION: GearPro Big Banner Style with Full-Bleed Dark Viewport */}
+      <section className="relative bg-[#0F0D0C] text-white overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-between">
+        {/* User uploaded natural mechanic repair photo as background - menutup layar penuh */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-mechanic-repair.jpg"
@@ -248,7 +248,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0C80]" />
         </div>
 
-        {/* 4 Feature Columns Bar dinaikkan ke bagian atas banner hero */}
+        {/* 4 Feature Columns Bar di bagian atas banner hero */}
         <div className="relative z-20 border-b border-stone-800/80 bg-[#0F0D0C]/85 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HIGHLIGHT_FEATURES.map((item, idx) => (
@@ -264,21 +264,22 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 pt-12 pb-16 md:pt-14 md:pb-20 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-11 space-y-5 text-left">
-            {/* Judul utama yang proporsional dan tidak maksa */}
+        {/* Hero content utama yang mengisi ruang ke bawah tanpa memotong layar */}
+        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative z-10 w-full flex-1 flex flex-col justify-center">
+          <div className="w-full space-y-6 text-left">
+            {/* Judul utama yang proporsional */}
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-normal leading-[1.12] uppercase font-sans">
               REPAIR WITH CARE <br />
               FOR <span className="text-amber-400">YOUR CAR</span>
             </h2>
 
-            {/* Deskripsi Bengkel tanpa tanda titik dua dipanjangkan */}
-            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-4xl font-normal">
+            {/* Deskripsi Bengkel dipanjangkan secara penuh */}
+            <p className="text-stone-300 text-sm sm:text-base leading-relaxed w-full max-w-5xl font-normal">
               Bengkel Cemerlang Jaya melayani servis berkala perawatan mesin ganti oli transmisi sistem rem kaki-kaki dan kelistrikan mobil secara profesional bergaransi dan transparan
             </p>
 
             {/* Tombol aksi */}
-            <div className="flex flex-wrap items-center gap-4 pt-1">
+            <div className="flex flex-wrap items-center gap-4 pt-3">
               <a
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
