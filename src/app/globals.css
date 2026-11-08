@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #2196f3;
+  --primary-strong: #1976d2;
+  --primary-soft: #dcebfb;
+  --bg-app: #f2f9fe;
+  --bg-panel: #ffffff;
+  --border-color: #eaf2fa;
+  --text-main: #212121;
+  --text-body: #4a5565;
+  --text-muted: #757575;
+  --success: #2e7d32;
+  --warning: #f59e0b;
+  --danger: #e53935;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Card styling */
+.card-bengkel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.06);
+}
+
+.btn-bengkel-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+.btn-bengkel-primary:hover {
+  background-color: var(--primary-strong);
+}
+
+.badge-pill {
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Print styles for Invoice */
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .card-bengkel {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
