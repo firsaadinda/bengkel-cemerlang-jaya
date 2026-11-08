@@ -164,10 +164,10 @@ function LoginForm() {
 
             <div className="mb-8">
               <h1 className="text-2xl font-black text-stone-900 tracking-tight">
-                Portal Masuk Karyawan
+                Portal Masuk Sistem
               </h1>
               <p className="text-xs sm:text-sm text-stone-500 mt-1.5">
-                Silakan masuk dengan akun terdaftar untuk mengakses sistem operasional bengkel.
+                Silakan masuk dengan akun terdaftar (Owner, Admin, atau Mekanik) untuk mengakses sistem operasional bengkel.
               </p>
             </div>
 
