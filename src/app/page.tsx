@@ -17,40 +17,113 @@ import {
   Gauge,
   CalendarCheck,
   ChevronRight,
+  Disc,
+  Cpu,
+  Sliders,
+  DollarSign,
+  Star,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { InventoryItem, WorkshopSettings } from '@/types/database'
 import { formatRupiah } from '@/lib/utils'
 
-// Layanan servis mobil umum (bukan mobil mewah/BMW, fokus pada perawatan mobil harian)
+// Layanan servis mobil berfokus murni pada suku cadang & komponen mobil (tanpa foto orang/mekanik)
 const FEATURED_SERVICES = [
   {
-    title: 'Ganti Oli Mesin & Tune Up Harian',
-    desc: 'Penggantian oli mesin berkualitas, filter oli, pembersihan saringan udara, dan general checkup performa mesin mobil keluarga.',
+    title: 'Ganti Oli & Performa Mesin',
+    desc: 'Penggantian oli mesin sintetis, filter oli baru, engine flush, serta pembersihan filter udara untuk menjaga kompresi mesin tetap optimal.',
     image: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=800&q=80',
     tag: 'Servis Berkala',
     duration: '45 Menit',
   },
   {
-    title: 'Servis Sistem Rem & Kampas Rem',
-    desc: 'Pembersihan caliper, penggantian kampas rem (brake pads), bubut piringan cakram roda depan, dan cek kebocoran minyak rem.',
+    title: 'Piringan Cakram & Rem Caliper',
+    desc: 'Pembersihan caliper, penggantian kampas rem (brake pads), bubut piringan cakram roda depan, dan flushing minyak rem DOT-4.',
     image: 'https://images.unsplash.com/photo-1762803942877-77462d9b9f55?auto=format&fit=crop&w=800&q=80',
-    tag: 'Keselamatan',
+    tag: 'Sistem Rem',
     duration: '40 Menit',
   },
   {
-    title: 'Diagnosis Sensor & Kelistrikan Mobil',
-    desc: 'Pengecekan scanner komputer OBD-II untuk lampu indikator check engine, aki, alternator, dan kelistrikan lampu mobil.',
+    title: 'Komputer Diagnostik OBD-II',
+    desc: 'Scanning sistem sensor injeksi, deteksi sensor kelistrikan, reset check engine, dan pembacaan fault code transmisi otomatis.',
     image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80',
     tag: 'Elektrikal',
     duration: '30 Menit',
   },
   {
-    title: 'Rotasi Ban, Spooring & Balancing Roda',
-    desc: 'Penyetelan sudut roda depan 3D, balancing getaran roda, serta pengecekan tierod dan bushing kaki-kaki mobil agar stir lurus stabil.',
+    title: 'Spooring, Balancing & Roda Mobil',
+    desc: 'Penyetelan sudut roda 3D (camber, caster, toe), rotasi ban, pengecekan tie rod, link stabilizer, dan ball joint roda depan.',
     image: 'https://images.unsplash.com/photo-1744223855103-b5516a34a497?auto=format&fit=crop&w=800&q=80',
     tag: 'Kaki-kaki Mobil',
     duration: '60 Menit',
+  },
+]
+
+// 4 Fitur Highlight Banner (seperti 4 icon GearPro)
+const HIGHLIGHT_FEATURES = [
+  {
+    icon: Cpu,
+    title: 'Auto Diagnostics',
+    desc: 'Deteksi komputer presisi untuk seluruh sensor elektrikal & ECU mobil.',
+  },
+  {
+    icon: Disc,
+    title: 'Genuine Materials',
+    desc: 'Suku cadang dan oli mesin 100% original berstandar pabrikan.',
+  },
+  {
+    icon: Wrench,
+    title: 'Standard SOP',
+    desc: 'Alur pengerjaan terstruktur dengan quality control sebelum serah terima.',
+  },
+  {
+    icon: DollarSign,
+    title: 'Low Cost Services',
+    desc: 'Biaya transparan di awal tanpa ada tarif terselubung atau mark-up liar.',
+  },
+]
+
+// Paket Servis (Pricing Plan ala GearPro)
+const PRICING_PACKAGES = [
+  {
+    name: 'Paket Servis Ringan',
+    price: 'Rp 350.000',
+    desc: 'Perawatan rutin berkala setiap 5.000 - 10.000 KM.',
+    features: [
+      'Ganti Oli Mesin & Filter Oli',
+      'Pembersihan Saringan Udara',
+      'Pemeriksaan Sistem Rem 4 Roda',
+      'Cek Fluida & Aki Kendaraan',
+      'General Checkup 15 Titik Mobil',
+    ],
+    popular: false,
+  },
+  {
+    name: 'Paket Tune Up & Rem Komplit',
+    price: 'Rp 750.000',
+    desc: 'Pembersihan ruang bakar mesin dan optimalisasi pengereman.',
+    features: [
+      'Semua di Paket Servis Ringan',
+      'Pembersihan Throttle Body & Busi',
+      'Carbon Cleaner Ruang Bakar',
+      'Flushing Minyak Rem DOT-4',
+      'Scanner Komputer Diagnostik OBD-II',
+      'Garansi Pengerjaan 14 Hari',
+    ],
+    popular: true,
+  },
+  {
+    name: 'Paket Kaki-kaki & Spooring',
+    price: 'Rp 600.000',
+    desc: 'Stabilisasi kemudi dan kenyamanan berkendara roda mobil.',
+    features: [
+      'Spooring 3D Komputer Roda Depan',
+      'Finish Balancing 4 Roda',
+      'Pengecekan Tie Rod & Rack End',
+      'Inspeksi Shock Absorber & Bushing',
+      'Uji Kelayakan Jalan (Test Drive)',
+    ],
+    popular: false,
   },
 ]
 
@@ -75,7 +148,7 @@ export default async function HomePage() {
 
   const workshop: WorkshopSettings = settings || {
     id: 1,
-    nama: 'Bengkel Cemerlang Jaya',
+    nama: 'CEMERLANG JAYA',
     alamat: 'Jl. Raya Otista No. 123, Jakarta Timur',
     telepon: '0812-3456-7890',
     jam_buka: 'Senin - Sabtu: 08:00 - 17:00 (Minggu Libur)',
@@ -86,8 +159,8 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#FAFAF9] flex flex-col justify-between selection:bg-rose-700 selection:text-white">
-      {/* Top Banner Bar - Warm Dark Slate with Amber Yellow */}
-      <div className="bg-[#1C1917] text-stone-300 text-xs py-2 px-6 border-b border-stone-800">
+      {/* Top Banner Bar: Dark Slate with Amber Yellow Highlight */}
+      <div className="bg-[#1C1917] text-stone-300 text-xs py-2.5 px-6 border-b border-stone-800">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
@@ -99,10 +172,12 @@ export default async function HomePage() {
               <span>{workshop.alamat}</span>
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-amber-300 font-semibold">Garansi Servis Mobil 14 Hari</span>
+              <span className="text-amber-300 font-bold uppercase tracking-wider text-[11px]">
+                100% Result Guarantee
+              </span>
             </span>
             <a
               href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
@@ -110,186 +185,248 @@ export default async function HomePage() {
               rel="noopener noreferrer"
               className="text-amber-400 hover:text-amber-300 font-bold"
             >
-              Hotline Bengkel: {workshop.telepon}
+              Hotline: {workshop.telepon}
             </a>
           </div>
         </div>
       </div>
 
-      {/* Header Navigation - Clean Warm Red & Amber Accents */}
+      {/* Header Navigation (GearPro Inspired Brand Layout) */}
       <header className="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          {/* Logo Bengkel */}
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-700 to-rose-900 flex items-center justify-center text-white shadow-md shadow-rose-900/20 ring-2 ring-amber-400/30">
+            <div className="w-11 h-11 rounded-xl bg-rose-700 flex items-center justify-center text-white shadow-md shadow-rose-950/20 ring-2 ring-amber-400/40">
               <Car className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-extrabold text-stone-900 text-base md:text-lg tracking-tight leading-tight">
+                <h1 className="font-black text-stone-900 text-lg md:text-xl tracking-tight leading-none uppercase">
                   {workshop.nama}
                 </h1>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300/60 uppercase tracking-wide">
-                  Spesialis Mobil
-                </span>
               </div>
-              <p className="text-xs text-stone-500 font-medium">Servis Mobil Harian & Perawatan Kaki-Kaki</p>
+              <p className="text-[11px] text-stone-500 font-semibold uppercase tracking-wider mt-0.5">
+                Car Repair & Auto Service
+              </p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
-            <a href="#layanan" className="hover:text-rose-700 transition-colors">Layanan Servis Mobil</a>
-            <a href="#keunggulan" className="hover:text-rose-700 transition-colors">Keunggulan Bengkel</a>
-            <a href="#kontak" className="hover:text-rose-700 transition-colors">Lokasi & Kontak</a>
+          {/* Nav links */}
+          <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider font-bold text-stone-600">
+            <a href="#tentang" className="hover:text-rose-700 transition-colors">About Us</a>
+            <a href="#layanan" className="hover:text-rose-700 transition-colors">Services</a>
+            <a href="#paket" className="hover:text-rose-700 transition-colors">Pricing Plan</a>
+            <a href="#kontak" className="hover:text-rose-700 transition-colors">Contact</a>
           </nav>
 
+          {/* Quick Contact & Login Button */}
           <div className="flex items-center gap-3">
+            <a
+              href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-50 text-amber-900 border border-amber-200 text-xs font-bold"
+            >
+              <Phone className="w-3.5 h-3.5 text-amber-600" />
+              <span>{workshop.telepon}</span>
+            </a>
             <Link
               href="/login"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-stone-900 hover:bg-rose-700 text-white text-sm font-bold transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
             >
-              <span>Portal Karyawan</span>
-              <ArrowRight className="w-4 h-4 text-amber-400" />
+              <span>Portal Masuk</span>
+              <ArrowRight className="w-4 h-4 text-amber-300" />
             </Link>
           </div>
         </div>
       </header>
 
-      {/* Hero Section with Warm Red, Amber, and Wheel/Tire Focus (No luxury brand badge) */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-stone-900 via-stone-900 to-stone-800 text-white pt-12 pb-24 md:py-24">
-        {/* Subtle dot pattern with warm amber/rose tone */}
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+      {/* HERO SECTION: GearPro Big Banner Style with Engine Bay & Wheel (No people/mechanic face) */}
+      <section className="relative bg-[#1C1917] text-white overflow-hidden">
+        {/* Real photo background: Clean Engine Bay & Machinery (No People) */}
+        <div className="absolute inset-0 opacity-40">
+          <Image
+            src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1600&q=80"
+            alt="Kompartemen mesin mobil dan komponen transmisi"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-stone-950 via-stone-950/85 to-stone-950/60" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-200 text-xs font-semibold backdrop-blur-sm">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Perawatan Mobil Terpercaya & Ramah di Kantong</span>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 pt-20 pb-28 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-8 space-y-5 text-left">
+            <span className="inline-block text-amber-400 font-extrabold text-xs uppercase tracking-widest">
+              Quality Service • Auto Repair
+            </span>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
-              Servis Mobil Berkala,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-300 to-amber-400">
-                Transparan & Nyaman.
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] uppercase">
+              REPAIR WITH CARE FOR{' '}
+              <span className="text-amber-400 underline decoration-rose-600 decoration-4 underline-offset-8">
+                YOUR CAR
               </span>
             </h2>
 
-            <p className="text-stone-300 text-base md:text-lg leading-relaxed max-w-2xl font-normal">
-              Perawatan mobil harian Anda ditangani dengan teliti: ganti oli mesin, perbaikan kampas & cakram rem, spooring balancing roda depan, tune up, dan kelistrikan mobil tanpa biaya tersembunyi.
+            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal pt-1">
+              Spesialis perawatan dan perbaikan suku cadang mobil: mesin, kampas & piringan cakram rem, spooring balancing roda depan, serta diagnosis sensor kelistrikan secara transparan dan bergaransi.
             </p>
 
-            {/* Quick Action Buttons (Warm Red & Amber Highlight) */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-4">
               <a
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-rose-700 hover:bg-rose-600 text-white font-bold text-sm transition-all shadow-lg shadow-rose-950/50 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
               >
-                <CalendarCheck className="w-5 h-5 text-amber-300" />
+                <CalendarCheck className="w-4 h-4 text-stone-950" />
                 <span>Booking Servis Mobil</span>
               </a>
 
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-800/80 hover:bg-stone-700/80 text-stone-200 border border-stone-700 font-semibold text-sm transition-all backdrop-blur-sm"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all"
               >
-                <Gauge className="w-5 h-5 text-amber-400" />
-                <span>Masuk Dashboard Internal</span>
+                <Gauge className="w-4 h-4 text-amber-400" />
+                <span>Masuk Dashboard</span>
               </Link>
             </div>
+          </div>
+        </div>
 
-            {/* Highlight Badges / Stats (Servz warm red & amber aesthetic) */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-stone-800">
-              <div>
-                <p className="text-2xl md:text-3xl font-extrabold text-white">100%</p>
-                <p className="text-xs text-stone-400 font-medium mt-0.5">Suku Cadang Asli</p>
+        {/* 4 Feature Columns Bar (Seperti bar 4 icon GearPro di bawah hero) */}
+        <div className="relative z-20 border-t border-stone-800 bg-[#141211]">
+          <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HIGHLIGHT_FEATURES.map((item, idx) => {
+              const Icon = item.icon
+              return (
+                <div key={idx} className="flex items-start gap-4 p-3 rounded-xl hover:bg-stone-900/60 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center shrink-0 border border-amber-400/20">
+                    <Icon className="w-6 h-6 stroke-[1.8]" />
+                  </div>
+                  <div>
+                    <h3 className="font-extrabold text-white text-sm uppercase tracking-wide">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-stone-400 mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT / COMMITTED SECTION (Layout 2 Kolom ala GearPro: Foto Komponen Mobil di Kiri, Teks Komitmen di Kanan) */}
+      <section id="tentang" className="py-20 bg-white border-b border-stone-200">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Kolom Kiri: 2 Foto Komponen Mobil (Roda depan & Piringan Cakram Rem, tanpa orang) */}
+          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+            <div className="relative h-72 rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-stone-900">
+              <Image
+                src="https://images.unsplash.com/photo-1762803942877-77462d9b9f55?auto=format&fit=crop&w=700&q=80"
+                alt="Close-up roda depan dan piringan rem cakram mobil"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-3 left-3 bg-stone-950/80 backdrop-blur-sm px-2.5 py-1 rounded-lg text-[11px] font-bold text-amber-300">
+                Pengereman Roda
               </div>
-              <div>
-                <p className="text-2xl md:text-3xl font-extrabold text-rose-400">14 Hari</p>
-                <p className="text-xs text-stone-400 font-medium mt-0.5">Garansi Pengerjaan</p>
-              </div>
-              <div>
-                <p className="text-2xl md:text-3xl font-extrabold text-amber-400">4.9 / 5.0</p>
-                <p className="text-xs text-stone-400 font-medium mt-0.5">Kepuasan Pelanggan</p>
+            </div>
+
+            <div className="relative h-72 rounded-2xl overflow-hidden border border-stone-200 shadow-md bg-stone-900 mt-8">
+              <Image
+                src="https://images.unsplash.com/photo-1744223855103-b5516a34a497?auto=format&fit=crop&w=700&q=80"
+                alt="Inspeksi velg dan roda mobil harian"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-3 left-3 bg-stone-950/80 backdrop-blur-sm px-2.5 py-1 rounded-lg text-[11px] font-bold text-amber-300">
+                Spooring & Balancing
               </div>
             </div>
           </div>
 
-          {/* Hero Card: Roda Mobil Depan & Cakram Rem (Natural, Tanpa Brand Mewah/BMW) */}
-          <div className="lg:col-span-5">
-            <div className="relative">
-              {/* Warm glow */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-rose-800 to-amber-600 opacity-25 blur-xl" />
-              
-              <div className="relative rounded-3xl overflow-hidden border border-stone-700/80 bg-stone-800 shadow-2xl">
-                {/* Authentic Roda Depan & Caliper Rem Mobil */}
-                <div className="relative h-80 sm:h-96 w-full bg-stone-950">
-                  <Image
-                    src="https://images.unsplash.com/photo-1762803942877-77462d9b9f55?auto=format&fit=crop&w=1000&q=80"
-                    alt="Pemeriksaan roda depan dan piringan rem cakram mobil"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/25 to-transparent" />
-                </div>
+          {/* Kolom Kanan: Teks Komitmen */}
+          <div className="lg:col-span-6 space-y-5">
+            <span className="text-amber-600 font-extrabold text-xs uppercase tracking-widest block">
+              About Our Workshop
+            </span>
 
-                {/* Floating Service Badge inside card */}
-                <div className="p-6 bg-stone-900/95 backdrop-blur-md border-t border-stone-800">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
-                        <Wrench className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-xs text-stone-400 font-medium">Layanan Perawatan</p>
-                        <p className="text-sm font-bold text-white">Inspeksi Roda & Pengereman Mobil</p>
-                      </div>
-                    </div>
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                      Buka Hari Ini
-                    </span>
-                  </div>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-stone-900 tracking-tight leading-tight uppercase">
+              Committed To Give High Quality Repairing & Services
+            </h3>
+
+            <p className="text-sm text-stone-600 leading-relaxed">
+              Bengkel Cemerlang Jaya hadir memberikan solusi pemeliharaan kendaraan roda empat secara presisi. Mulai dari pengecekan pelumasan mesin, sistem pengereman, transmisi, hingga geometri roda demi keamanan dan kenyamanan berkendara Anda sekeluarga.
+            </p>
+
+            {/* Checklist */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
+                  ✓
                 </div>
+                <span className="text-xs font-bold text-stone-800">100% Suku Cadang Original & Terdaftar</span>
               </div>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
+                  ✓
+                </div>
+                <span className="text-xs font-bold text-stone-800">Checklist Quality Control 15 Titik Kendaraan</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
+                  ✓
+                </div>
+                <span className="text-xs font-bold text-stone-800">Nota Tagihan Digital Transparan Tanpa Biaya Siluman</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
+                  ✓
+                </div>
+                <span className="text-xs font-bold text-stone-800">Garansi Pengerjaan Servis 14 Hari Kerja</span>
+              </div>
+            </div>
+
+            <div className="pt-3">
+              <a
+                href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
+              >
+                <span>Konsultasikan Masalah Mobil</span>
+                <ChevronRight className="w-4 h-4 text-amber-300" />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid Section (Warm Red & Amber Styling) */}
+      {/* SERVICES GRID SECTION: Foto Roda & Bagian Mobil (Tanpa Foto Orang) */}
       <section id="layanan" className="py-20 px-6 max-w-7xl mx-auto w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-bold mb-2">
-              <Zap className="w-3.5 h-3.5 text-amber-600" />
-              <span>PERAWATAN MOBIL HARIAN</span>
-            </div>
-            <h3 className="text-3xl font-extrabold text-stone-900 tracking-tight">
-              Layanan Bengkel Mobil Terpopuler
-            </h3>
-            <p className="text-stone-500 mt-2 text-sm md:text-base max-w-xl">
-              Dikerjakan langsung oleh mekanik berpengalaman dengan pengerjaan terstandarisasi dan rincian biaya yang transparan.
-            </p>
-          </div>
-          <a
-            href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
-            className="mt-4 md:mt-0 inline-flex items-center gap-2 text-rose-700 font-bold text-sm hover:text-rose-800 group"
-          >
-            <span>Konsultasi Keluhan Mobil</span>
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-amber-600 font-extrabold text-xs uppercase tracking-widest block mb-2">
+            Our Specialties
+          </span>
+          <h3 className="text-3xl sm:text-4xl font-black text-stone-900 tracking-tight uppercase">
+            Layanan Servis Komponen Mobil
+          </h3>
+          <p className="text-stone-500 text-xs sm:text-sm mt-2">
+            Penanganan terarah pada setiap komponen mobil menggunakan peralatan diagnostik dan standar kerja ketat.
+          </p>
         </div>
 
-        {/* Grid Cards with Real Photos (Mobil, Roda, Mesin, Rem) */}
+        {/* 4 Cards Komponen Mobil */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURED_SERVICES.map((serv, idx) => (
             <div
               key={idx}
-              className="group bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+              className="bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 group"
             >
               <div>
-                <div className="relative h-44 w-full overflow-hidden bg-stone-100">
+                <div className="relative h-48 w-full overflow-hidden bg-stone-900">
                   <Image
                     src={serv.image}
                     alt={serv.title}
@@ -297,19 +434,20 @@ export default async function HomePage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-stone-900/80 backdrop-blur-md text-white shadow-sm">
+                    <span className="px-2.5 py-1 rounded-md text-[11px] font-extrabold bg-stone-900/90 text-amber-400 uppercase tracking-wider shadow-sm">
                       {serv.tag}
                     </span>
                   </div>
                   <div className="absolute bottom-3 right-3">
-                    <span className="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-white/95 text-stone-800 shadow-sm flex items-center gap-1 border border-stone-200">
-                      <Clock className="w-3 h-3 text-amber-600" />
+                    <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-white text-stone-900 shadow-sm flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-rose-700" />
                       {serv.duration}
                     </span>
                   </div>
                 </div>
+
                 <div className="p-5">
-                  <h4 className="font-bold text-stone-900 text-base group-hover:text-rose-700 transition-colors">
+                  <h4 className="font-extrabold text-stone-900 text-base group-hover:text-rose-700 transition-colors uppercase">
                     {serv.title}
                   </h4>
                   <p className="text-xs text-stone-500 mt-2 line-clamp-3 leading-relaxed">
@@ -317,14 +455,15 @@ export default async function HomePage() {
                   </p>
                 </div>
               </div>
+
               <div className="p-5 pt-0">
                 <a
                   href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(serv.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-stone-50 hover:bg-rose-700 text-stone-700 hover:text-white font-semibold text-xs border border-stone-200 hover:border-transparent transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-stone-50 hover:bg-rose-700 text-stone-700 hover:text-white font-bold text-xs uppercase tracking-wider border border-stone-200 hover:border-transparent transition-all"
                 >
-                  <span>Pesan Layanan</span>
+                  <span>Pesan Servis</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -332,12 +471,12 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* List of active database services if available */}
+        {/* Database Registered Services */}
         {dbServices && dbServices.length > 0 && (
           <div className="mt-12 bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
-            <h4 className="font-bold text-stone-900 text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h4 className="font-extrabold text-stone-900 text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-emerald-600" />
-              <span>Daftar Tarif Servis Terdaftar di Sistem</span>
+              <span>Daftar Ongkos Jasa Servis Terdaftar di Sistem</span>
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {dbServices.map((item: InventoryItem) => (
@@ -346,7 +485,7 @@ export default async function HomePage() {
                     <p className="text-xs font-bold text-stone-800">{item.nama}</p>
                     <p className="text-[11px] text-stone-500">{item.kode}</p>
                   </div>
-                  <span className="text-xs font-extrabold text-rose-700">
+                  <span className="text-xs font-black text-rose-700">
                     {formatRupiah(item.harga_jual)}
                   </span>
                 </div>
@@ -356,84 +495,114 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* Why Choose Us */}
-      <section id="keunggulan" className="py-16 bg-white border-y border-stone-200">
+      {/* PRICING PLAN SECTION (Seperti Kotak Gelap GearPro di kanan atas gambar) */}
+      <section id="paket" className="py-20 bg-[#1C1917] text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-stone-900 tracking-tight">
-              Kenapa Mempercayakan Mobil Anda di Bengkel Cemerlang Jaya?
+            <span className="text-amber-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
+              Affordable Rates
+            </span>
+            <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight uppercase">
+              Paket Perawatan Kendaraan
             </h3>
-            <p className="text-stone-500 text-sm mt-2">
-              Pelayanan ramah, standar kerja terstruktur, dan estimasi biaya jelas sebelum pengerjaan dimulai.
+            <p className="text-stone-400 text-xs sm:text-sm mt-2">
+              Pilihan paket servis terjangkau dengan cakupan pemeriksaan menyeluruh dan garansi pengerjaan.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-2xl bg-[#FAFAF9] border border-stone-200 flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center mb-5">
-                <Users className="w-6 h-6" />
-              </div>
-              <h4 className="font-bold text-stone-900 text-lg mb-2">Tim Mekanik Handal & Teliti</h4>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Mekanik kami berpengalaman menangani mobil harian keluarga, MPV, city car, hingga kendaraan komersial ringan.
-              </p>
-            </div>
+            {PRICING_PACKAGES.map((pkg, idx) => (
+              <div
+                key={idx}
+                className={`relative rounded-2xl p-8 flex flex-col justify-between transition-all ${
+                  pkg.popular
+                    ? 'bg-[#292524] border-2 border-amber-400 shadow-2xl scale-105'
+                    : 'bg-[#201D1B] border border-stone-800'
+                }`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-400 text-stone-950 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
+                    Paling Diminati
+                  </div>
+                )}
 
-            <div className="p-6 rounded-2xl bg-[#FAFAF9] border border-stone-200 flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-5">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h4 className="font-bold text-stone-900 text-lg mb-2">Pemeriksaan & Uji Kelayakan</h4>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Sebelum diserahkan kembali, mobil dicek bersama checklist Service Advisor untuk memastikan keluhan telah tuntas.
-              </p>
-            </div>
+                <div>
+                  <h4 className="font-extrabold text-white text-lg uppercase">{pkg.name}</h4>
+                  <p className="text-xs text-stone-400 mt-1">{pkg.desc}</p>
+                  <div className="my-6">
+                    <span className="text-3xl sm:text-4xl font-black text-amber-400 tracking-tight">
+                      {pkg.price}
+                    </span>
+                    <span className="text-xs text-stone-400 block mt-1">Estimasi biaya jasa & tune up</span>
+                  </div>
 
-            <div className="p-6 rounded-2xl bg-[#FAFAF9] border border-stone-200 flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-5">
-                <Award className="w-6 h-6" />
+                  <div className="space-y-3 pt-4 border-t border-stone-800">
+                    {pkg.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-start gap-2.5 text-xs text-stone-300">
+                        <CheckCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-8">
+                  <a
+                    href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20ambil%20paket%20${encodeURIComponent(pkg.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all ${
+                      pkg.popular
+                        ? 'bg-amber-400 hover:bg-amber-300 text-stone-950 shadow-lg shadow-amber-400/20'
+                        : 'bg-rose-700 hover:bg-rose-800 text-white'
+                    }`}
+                  >
+                    <span>Pilih Paket Ini</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
-              <h4 className="font-bold text-stone-900 text-lg mb-2">Garansi Servis & Biaya Jelas</h4>
-              <p className="text-sm text-stone-600 leading-relaxed">
-                Rincian harga suku cadang dan ongkos kerja tercetak jelas di nota invoice digital dengan garansi pengerjaan 14 hari.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Workshop Location & Info Footer Bar */}
-      <footer id="kontak" className="bg-[#1C1917] text-stone-300 pt-14 pb-8 border-t border-stone-800">
+      {/* FOOTER (Dark Slate & Amber Yellow ala GearPro) */}
+      <footer id="kontak" className="bg-[#141211] text-stone-300 pt-16 pb-8 border-t border-stone-800">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-700 flex items-center justify-center text-white ring-2 ring-amber-400/20">
+              <div className="w-10 h-10 rounded-xl bg-rose-700 flex items-center justify-center text-white ring-2 ring-amber-400/40">
                 <Car className="w-5 h-5" />
               </div>
-              <h4 className="text-white font-extrabold text-lg">{workshop.nama}</h4>
+              <h4 className="text-white font-black text-lg tracking-tight uppercase">
+                {workshop.nama}
+              </h4>
             </div>
             <p className="text-xs text-stone-400 max-w-sm leading-relaxed">
-              Bengkel perawatan dan servis mobil harian di Jakarta. Melayani tune up mesin, ganti oli, servis rem cakram, perbaikan kaki-kaki, dan kelistrikan mobil.
+              Bengkel perbaikan dan servis mobil harian di Jakarta. Spesialis tune up mesin, sistem rem cakram, spooring balancing roda, dan diagnosis kelistrikan mobil tanpa biaya siluman.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
-                className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs flex items-center gap-2 transition-colors"
+                className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-colors"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 text-stone-950" />
                 <span>WhatsApp Hotline</span>
               </a>
               <Link
                 href="/login"
-                className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 font-semibold text-xs border border-stone-700 transition-colors"
+                className="px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-rose-700 text-stone-200 font-bold text-xs uppercase tracking-wider border border-stone-700 transition-colors"
               >
-                <span>Login Karyawan</span>
+                <span>Portal Masuk Karyawan</span>
               </Link>
             </div>
           </div>
 
           <div>
-            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Kontak & Lokasi</h5>
+            <h5 className="text-white font-extrabold text-xs uppercase tracking-widest mb-4">
+              Location & Hours
+            </h5>
             <div className="space-y-3 text-xs text-stone-400">
               <p className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
@@ -451,12 +620,14 @@ export default async function HomePage() {
           </div>
 
           <div>
-            <h5 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Akses Masuk Karyawan</h5>
+            <h5 className="text-white font-extrabold text-xs uppercase tracking-widest mb-4">
+              Quick Portals
+            </h5>
             <div className="space-y-2 text-xs">
-              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Akses Service Advisor (WO Mobil)</Link></p>
-              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Akses Kepala Mekanik (Tim Kerja)</Link></p>
-              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Akses Kasir (Pembayaran & Invoice)</Link></p>
-              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Akses Owner (Laporan Laba & Audit)</Link></p>
+              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Service Advisor (Work Order Mobil)</Link></p>
+              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Kepala Mekanik (Alokasi Tim)</Link></p>
+              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Kasir (Pembayaran & Invoice)</Link></p>
+              <p><Link href="/login" className="hover:text-amber-400 transition-colors">Owner (Laporan Laba & Audit)</Link></p>
             </div>
           </div>
         </div>
