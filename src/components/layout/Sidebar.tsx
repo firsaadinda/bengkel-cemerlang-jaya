@@ -54,11 +54,11 @@ export function Sidebar({ profile }: SidebarProps) {
       <div>
         {/* Brand / Logo */}
         <div className="p-5 flex items-center gap-3 border-b border-[#EAF2FA]">
-          <div className="w-10 h-10 rounded-xl bg-rose-700 flex items-center justify-center text-white shadow-sm ring-1 ring-amber-400/30">
-            <Car className="w-6 h-6" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-stone-900 to-stone-950 border border-stone-700 flex items-center justify-center text-amber-400 font-black text-sm shadow-sm ring-1 ring-amber-400/30">
+            CJ
           </div>
           <div>
-            <h1 className="font-bold text-sm tracking-tight text-stone-900">Cemerlang Jaya</h1>
+            <h1 className="font-bold text-sm tracking-tight text-stone-900 uppercase">Cemerlang Jaya</h1>
             <p className="text-[11px] text-rose-700 font-bold uppercase tracking-wider">Spesialis Mobil</p>
           </div>
         </div>

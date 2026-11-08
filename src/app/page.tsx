@@ -172,31 +172,24 @@ export default async function HomePage() {
               <span>{workshop.alamat}</span>
             </span>
           </div>
-          <div className="flex items-center gap-5">
-            <a
-              href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-400 hover:text-amber-300 font-bold"
-            >
-              Kontak: {workshop.telepon}
-            </a>
-          </div>
         </div>
       </div>
 
       {/* Header Navigation (GearPro Inspired Brand Layout) */}
       <header className="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo Bengkel */}
+          {/* Logo Bengkel: Modern Automotive Hexagon Gear & Monogram */}
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-rose-700 flex items-center justify-center text-white shadow-md shadow-rose-950/20 ring-2 ring-amber-400/40">
-              <Car className="w-6 h-6 stroke-[2.2]" />
+            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-stone-900 to-stone-950 flex items-center justify-center text-amber-400 border border-stone-800 shadow-md">
+              {/* Modern geometric automotive badge */}
+              <div className="absolute inset-1 rounded-lg border border-amber-400/30 flex items-center justify-center">
+                <span className="font-black text-amber-400 text-base tracking-tighter">CJ</span>
+              </div>
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-black text-stone-900 text-lg md:text-xl tracking-tight leading-none uppercase">
-                  {workshop.nama}
+                  BENGKEL CEMERLANG JAYA
                 </h1>
               </div>
               <p className="text-[11px] text-stone-500 font-semibold uppercase tracking-wider mt-0.5">
@@ -549,11 +542,11 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-700 flex items-center justify-center text-white ring-2 ring-amber-400/40">
-                <Car className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-stone-900 to-stone-950 border border-stone-700 flex items-center justify-center text-amber-400 font-black text-sm">
+                CJ
               </div>
               <h4 className="text-white font-black text-lg tracking-tight uppercase">
-                {workshop.nama}
+                BENGKEL CEMERLANG JAYA
               </h4>
             </div>
             <p className="text-xs text-stone-400 max-w-sm leading-relaxed">
