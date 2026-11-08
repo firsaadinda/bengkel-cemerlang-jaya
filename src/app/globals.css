@@ -1,18 +1,27 @@
 @import "tailwindcss";
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
 
 :root {
-  --primary: #2196f3;
-  --primary-strong: #1976d2;
-  --primary-soft: #dcebfb;
-  --bg-app: #f2f9fe;
-  --bg-panel: #ffffff;
-  --border-color: #eaf2fa;
-  --text-main: #212121;
-  --text-body: #4a5565;
-  --text-muted: #757575;
-  --success: #2e7d32;
-  --warning: #f59e0b;
-  --danger: #e53935;
+  /* Servz Modern Automotive Theme: Deep Navy Slate, Vibrant Cobalt Blue & Amber Accents */
+  --primary: #2563EB;
+  --primary-strong: #1D4ED8;
+  --primary-soft: #EFF6FF;
+  --accent-amber: #F59E0B;
+  --accent-red: #EF4444;
+  --dark-slate: #0F172A;
+  --slate-panel: #1E293B;
+
+  --bg-app: #F8FAFC;
+  --bg-panel: #FFFFFF;
+  --border-color: #E2E8F0;
+  
+  --text-main: #0F172A;
+  --text-body: #475569;
+  --text-muted: #64748B;
+  
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
 }
 
 body {
@@ -22,48 +31,60 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Card styling */
+/* Servz Elevated Card Styling */
 .card-bengkel {
   background: var(--bg-panel);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-bengkel-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+  border-color: #CBD5E1;
 }
 
 .btn-bengkel-primary {
   background-color: var(--primary);
   color: #ffffff;
-  border-radius: 10px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
   transition: all 0.15s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .btn-bengkel-primary:hover {
   background-color: var(--primary-strong);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .badge-pill {
   border-radius: 9999px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.75rem;
-  padding: 0.25rem 0.65rem;
+  padding: 0.3rem 0.75rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.35rem;
 }
 
-/* Print styles for Invoice */
-@media print {
-  body {
-    background: #ffffff !important;
-  }
-  .no-print {
-    display: none !important;
-  }
-  .print-only {
-    display: block !important;
-  }
-  .card-bengkel {
-    border: none !important;
-    box-shadow: none !important;
-  }
+/* Custom scrollbar for data tables */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
