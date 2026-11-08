@@ -234,24 +234,24 @@ export default async function HomePage() {
       </header>
 
       {/* HERO SECTION: GearPro Big Banner Style with Full-Bleed Dark Viewport */}
-      <section className="relative bg-[#141211] text-white overflow-hidden min-h-[calc(100vh-115px)] flex flex-col justify-between">
-        {/* High-Definition Mechanic Repair Background (Ultra Sharp, Uncompressed) */}
+      <section className="relative bg-[#1A1817] text-white overflow-hidden min-h-[calc(100vh-115px)] flex flex-col justify-between">
+        {/* High-Definition Mechanic Repair Background (Terang, Jelas, & Tajam) */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-mechanic-repair.jpg"
             alt="Perbaikan mesin mobil oleh teknisi profesional di bawah kap mesin"
             fill
             unoptimized
-            className="object-cover object-right sm:object-center opacity-70"
+            className="object-cover object-right sm:object-center opacity-85"
             priority
           />
-          {/* Subtle natural dark gradient yang lembut agar foto tajam tetap terlihat jelas */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#141211EE] via-[#14121190] to-[#14121130]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141211] via-transparent to-[#14121150]" />
+          {/* Natural cinematic gradient yang jauh lebih terang & tidak pekat */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#141211D8] via-[#14121166] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#14121180] via-transparent to-[#14121140]" />
         </div>
 
-        {/* 4 Feature Columns Bar di bagian atas banner hero */}
-        <div className="relative z-20 border-b border-stone-800/60 bg-[#141211]/75 backdrop-blur-md">
+        {/* 4 Feature Columns Bar di bagian atas banner hero (lebih transparan & terang) */}
+        <div className="relative z-20 border-b border-stone-700/40 bg-stone-950/40 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-6 py-3.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {HIGHLIGHT_FEATURES.map((item, idx) => (
               <div key={idx} className="p-1 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-3">
