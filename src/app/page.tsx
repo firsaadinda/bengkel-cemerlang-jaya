@@ -241,29 +241,34 @@ export default async function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION: GearPro Big Banner Style with Engine Bay & Wheel (No people/mechanic face) */}
-      <section className="relative bg-[#1C1917] text-white overflow-hidden">
-        {/* Real photo background: Clean Engine Bay & Machinery (No People) */}
-        <div className="absolute inset-0 opacity-40">
+      {/* HERO SECTION: GearPro Big Banner Style with User's Uploaded Engine Repair Photo */}
+      <section className="relative bg-[#0F0D0C] text-white overflow-hidden">
+        {/* User uploaded natural mechanic repair photo as background */}
+        <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=1600&q=80"
-            alt="Kompartemen mesin mobil dan komponen transmisi"
+            src="/images/hero-mechanic-repair.jpg"
+            alt="Perbaikan mesin mobil oleh mekanik profesional"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-stone-950 via-stone-950/85 to-stone-950/60" />
+          {/* Rich multi-stop dark gradient overlay with warm amber & rose depth */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F0D0CEE] via-[#141211DD] to-[#1C191777]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0C99]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 pt-20 pb-28 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-8 space-y-5 text-left">
-            <span className="inline-block text-amber-400 font-extrabold text-xs uppercase tracking-widest">
-              Quality Service • Auto Repair
-            </span>
+        <div className="max-w-7xl mx-auto px-6 pt-24 pb-32 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="lg:col-span-8 space-y-6 text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/80 border border-amber-400/30 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-amber-400 font-extrabold text-[11px] uppercase tracking-[0.2em]">
+                Quality Service • Auto Repair
+              </span>
+            </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] uppercase">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-wide leading-[1.12] uppercase font-sans">
               REPAIR WITH CARE FOR{' '}
-              <span className="text-amber-400 underline decoration-rose-600 decoration-4 underline-offset-8">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 underline decoration-rose-600 decoration-4 underline-offset-8">
                 YOUR CAR
               </span>
             </h2>
@@ -277,7 +282,7 @@ export default async function HomePage() {
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
               >
                 <CalendarCheck className="w-4 h-4 text-stone-950" />
                 <span>Booking Servis Mobil</span>
@@ -285,7 +290,7 @@ export default async function HomePage() {
 
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
               >
                 <Gauge className="w-4 h-4 text-amber-400" />
                 <span>Masuk Dashboard</span>
@@ -295,7 +300,7 @@ export default async function HomePage() {
         </div>
 
         {/* 4 Feature Columns Bar (Seperti bar 4 icon GearPro di bawah hero) */}
-        <div className="relative z-20 border-t border-stone-800 bg-[#141211]">
+        <div className="relative z-20 border-t border-stone-800 bg-[#0F0D0C]/95 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HIGHLIGHT_FEATURES.map((item, idx) => {
               const Icon = item.icon
