@@ -3,7 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Bengkel Cemerlang Jaya',
-  description: 'Aplikasi Manajemen Bengkel Cemerlang Jaya - Sistem Pengelolaan Work Order, Inventory, dan Keuangan',
+  description:
+    'Aplikasi Manajemen Bengkel Cemerlang Jaya - Sistem Pengelolaan Work Order, Inventory, dan Keuangan',
 }
 
 export default function RootLayout({
