@@ -234,23 +234,23 @@ export default async function HomePage() {
       </header>
 
       {/* HERO SECTION: GearPro Big Banner Style with Full-Bleed Dark Viewport */}
-      <section className="relative bg-[#0F0D0C] text-white overflow-hidden min-h-[calc(100vh-115px)] flex flex-col justify-between">
-        {/* User uploaded natural mechanic repair photo as background - menutup layar penuh */}
+      <section className="relative bg-[#141211] text-white overflow-hidden min-h-[calc(100vh-115px)] flex flex-col justify-between">
+        {/* User uploaded natural mechanic repair photo as background - lebih terang & hidup */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-mechanic-repair.jpg"
             alt="Perbaikan mesin mobil oleh teknisi profesional"
             fill
-            className="object-cover object-right sm:object-center opacity-45"
+            className="object-cover object-right sm:object-center opacity-65"
             priority
           />
-          {/* Subtle natural dark gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F0D0CF0] via-[#0F0D0CCC] to-[#0F0D0C66]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0C80]" />
+          {/* Subtle natural dark gradient yang lebih lembut agar foto bengkel bernafas */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#141211E6] via-[#14121199] to-[#14121133]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141211] via-transparent to-[#14121160]" />
         </div>
 
         {/* 4 Feature Columns Bar di bagian atas banner hero */}
-        <div className="relative z-20 border-b border-stone-800/80 bg-[#0F0D0C]/85 backdrop-blur-md">
+        <div className="relative z-20 border-b border-stone-800/60 bg-[#141211]/75 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-6 py-3.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {HIGHLIGHT_FEATURES.map((item, idx) => (
               <div key={idx} className="p-1 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-3">

@@ -53,59 +53,56 @@ export function VehicleTrackingCard() {
   }
 
   return (
-    <div className="w-full bg-[#1A1614]/95 backdrop-blur-md border border-stone-700/80 rounded-2xl p-4 sm:p-5 shadow-2xl text-left relative overflow-hidden transition-all">
-      {/* Background Accent glow */}
-      <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-
+    <div className="w-full bg-white/95 backdrop-blur-md border border-stone-200/90 rounded-2xl p-4 sm:p-6 shadow-2xl text-left relative overflow-hidden transition-all">
       {/* Header Widget */}
-      <div className="mb-2">
-        <h3 className="text-base sm:text-lg font-black text-white tracking-tight uppercase">
+      <div className="mb-3">
+        <h3 className="text-base sm:text-lg font-black text-stone-900 tracking-tight uppercase">
           Cek Progres Servis Mobil
         </h3>
-        <p className="text-xs text-stone-300 mt-0.5 leading-relaxed">
+        <p className="text-xs text-stone-500 mt-0.5 leading-relaxed">
           Pantau tahapan pengerjaan kendaraan Anda tanpa perlu menunggu di bengkel.
         </p>
       </div>
 
       {/* Mode A: Jika Sudah Ada Hasil Pencarian */}
       {result ? (
-        <div className="mt-4 pt-3.5 border-t border-stone-800 space-y-3.5">
+        <div className="mt-4 pt-3.5 border-t border-stone-100 space-y-3.5">
           {/* Identitas Mobil & Status Badge */}
-          <div className="flex items-start justify-between gap-3 bg-stone-900/90 border border-stone-700/60 rounded-xl p-3">
+          <div className="flex items-start justify-between gap-3 bg-stone-50 border border-stone-200 rounded-xl p-3">
             <div>
               <div className="flex items-center gap-2">
-                <Car className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-xs font-black text-white uppercase tracking-wider">
+                <Car className="w-4 h-4 text-amber-500 shrink-0" />
+                <span className="text-xs font-black text-stone-900 uppercase tracking-wider">
                   {result.plat}
                 </span>
               </div>
-              <p className="text-xs text-stone-300 font-semibold mt-0.5">
+              <p className="text-xs text-stone-700 font-semibold mt-0.5">
                 {result.merek_model} {result.tahun ? `(${result.tahun})` : ''}
               </p>
-              <p className="text-[10px] text-stone-400 mt-0.5">
-                No. WO: <span className="text-stone-300 font-mono font-semibold">{result.nomor_wo}</span>
+              <p className="text-[10px] text-stone-500 mt-0.5">
+                No. WO: <span className="text-stone-800 font-mono font-semibold">{result.nomor_wo}</span>
               </p>
             </div>
 
             <div className="text-right shrink-0">
               {result.status === 'siap_diambil' || result.status === 'diambil' ? (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-950 text-emerald-300 border border-emerald-600/50 uppercase tracking-wider">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-50 text-emerald-700 border border-emerald-200 uppercase tracking-wider">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                   Siap Diambil
                 </span>
               ) : result.status === 'selesai' ? (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-sky-950 text-sky-300 border border-sky-600/50 uppercase tracking-wider">
-                  <ShieldCheck className="w-3 h-3 text-sky-400" />
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-sky-50 text-sky-700 border border-sky-200 uppercase tracking-wider">
+                  <ShieldCheck className="w-3 h-3 text-sky-600" />
                   Uji QC & Test
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-950 text-amber-300 border border-amber-600/50 uppercase tracking-wider">
-                  <Wrench className="w-3 h-3 text-amber-400" />
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-50 text-amber-700 border border-amber-300 uppercase tracking-wider">
+                  <Wrench className="w-3 h-3 text-amber-600" />
                   Dikerjakan
                 </span>
               )}
-              <p className="text-[10px] text-stone-400 mt-1">
-                Estimasi: <span className="text-amber-300 font-semibold">{result.estimasi_selesai}</span>
+              <p className="text-[10px] text-stone-500 mt-1">
+                Estimasi: <span className="text-stone-800 font-bold">{result.estimasi_selesai}</span>
               </p>
             </div>
           </div>
@@ -126,17 +123,17 @@ export function VehicleTrackingCard() {
                     <div
                       className={`w-full h-1.5 rounded-full mb-1 transition-all ${
                         isPassed
-                          ? 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.5)]'
-                          : 'bg-stone-800'
+                          ? 'bg-amber-400'
+                          : 'bg-stone-200'
                       }`}
                     />
                     <span
                       className={`text-[9px] font-bold uppercase tracking-tight ${
                         isCurrent
-                          ? 'text-amber-400'
+                          ? 'text-amber-600'
                           : isPassed
-                          ? 'text-stone-300'
-                          : 'text-stone-600'
+                          ? 'text-stone-800'
+                          : 'text-stone-400'
                       }`}
                     >
                       {item.label}
@@ -148,18 +145,18 @@ export function VehicleTrackingCard() {
           </div>
 
           {/* Catatan Diagnosis Singkat */}
-          <div className="bg-stone-900/60 border border-stone-800 rounded-lg p-2.5 text-xs text-stone-300 leading-relaxed">
+          <div className="bg-stone-50 border border-stone-200 rounded-lg p-2.5 text-xs text-stone-700 leading-relaxed">
             <span className="text-[10px] text-stone-400 font-bold uppercase block mb-0.5">
               Keluhan & Pengerjaan:
             </span>
-            <p className="line-clamp-2 text-[11px] text-stone-300">{result.diagnosis || result.keluhan}</p>
+            <p className="line-clamp-2 text-[11px] text-stone-600">{result.diagnosis || result.keluhan}</p>
           </div>
 
           {/* Tombol Cek Plat Lain */}
           <button
             type="button"
             onClick={handleReset}
-            className="w-full inline-flex items-center justify-center gap-1.5 text-xs text-stone-400 hover:text-white py-1.5 transition-colors font-semibold"
+            className="w-full inline-flex items-center justify-center gap-1.5 text-xs text-stone-500 hover:text-stone-900 py-1.5 transition-colors font-semibold"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Cek Nomor Plat Lain</span>
@@ -167,7 +164,7 @@ export function VehicleTrackingCard() {
         </div>
       ) : (
         /* Mode B: Form Input Pencarian Plat */
-        <div className="mt-4 pt-3 border-t border-stone-800/80 space-y-3">
+        <div className="mt-4 pt-3 border-t border-stone-100 space-y-3">
           <form
             onSubmit={(e) => {
               e.preventDefault()
@@ -182,7 +179,7 @@ export function VehicleTrackingCard() {
                 value={platInput}
                 onChange={(e) => setPlatInput(e.target.value.toUpperCase())}
                 placeholder="Contoh: B 1234 ABC"
-                className="w-full pl-10 pr-4 py-2.5 bg-stone-900/90 border border-stone-700 rounded-xl text-xs sm:text-sm text-white placeholder-stone-500 font-mono font-bold tracking-wider uppercase focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
+                className="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-xs sm:text-sm text-stone-900 placeholder-stone-400 font-mono font-bold tracking-wider uppercase focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400"
               />
             </div>
 
@@ -208,8 +205,8 @@ export function VehicleTrackingCard() {
 
           {/* Pesan jika tidak ditemukan */}
           {notFoundMsg && (
-            <div className="p-2.5 rounded-xl bg-rose-950/60 border border-rose-800/80 text-rose-300 text-xs flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
               <div className="text-[11px] leading-relaxed">
                 <span>{notFoundMsg}</span>
               </div>
@@ -220,4 +217,3 @@ export function VehicleTrackingCard() {
     </div>
   )
 }
-
