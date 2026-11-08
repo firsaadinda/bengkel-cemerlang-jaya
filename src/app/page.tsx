@@ -233,7 +233,7 @@ export default async function HomePage() {
       </header>
 
       {/* HERO SECTION: GearPro Big Banner Style with Full-Bleed Dark Viewport */}
-      <section className="relative bg-[#0F0D0C] text-white overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-between">
+      <section className="relative bg-[#0F0D0C] text-white overflow-hidden min-h-[calc(100vh-140px)] flex flex-col justify-between">
         {/* User uploaded natural mechanic repair photo as background - menutup layar penuh */}
         <div className="absolute inset-0">
           <Image
@@ -250,13 +250,13 @@ export default async function HomePage() {
 
         {/* 4 Feature Columns Bar di bagian atas banner hero */}
         <div className="relative z-20 border-b border-stone-800/80 bg-[#0F0D0C]/85 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {HIGHLIGHT_FEATURES.map((item, idx) => (
-              <div key={idx} className="p-2 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-4">
+              <div key={idx} className="p-1.5 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-3.5">
                 <h3 className="font-extrabold text-amber-400 text-xs sm:text-sm uppercase tracking-wider">
                   {item.title}
                 </h3>
-                <p className="text-xs text-stone-300 mt-1 leading-relaxed">
+                <p className="text-xs text-stone-300 mt-0.5 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -264,40 +264,40 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Hero content utama yang mengisi ruang ke bawah tanpa memotong layar */}
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 relative z-10 w-full flex-1 flex flex-col justify-center">
-          <div className="w-full space-y-6 text-left">
+        {/* Hero content utama yang dinaikkan ke atas agar fit dan tidak memotong bagian bawah */}
+        <div className="max-w-7xl mx-auto px-6 pt-6 pb-12 md:pt-8 md:pb-14 relative z-10 w-full flex-1 flex flex-col justify-center">
+          <div className="w-full space-y-4 text-left">
             {/* Judul utama yang proporsional */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-normal leading-[1.12] uppercase font-sans">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-normal leading-[1.12] uppercase font-sans">
               REPAIR WITH CARE <br />
               FOR <span className="text-amber-400">YOUR CAR</span>
             </h2>
 
             {/* Deskripsi Bengkel dalam 4 baris rapi */}
-            <div className="text-stone-300 text-sm sm:text-base leading-relaxed space-y-1 font-normal">
+            <div className="text-stone-300 text-xs sm:text-sm leading-relaxed space-y-1 font-normal max-w-3xl">
               <p>Bengkel Cemerlang Jaya melayani servis berkala dan perawatan mesin mobil.</p>
               <p>Pengerjaan meliputi ganti oli, perawatan transmisi, sistem rem, suspensi, dan sistem elektrikal.</p>
               <p>Seluruh perbaikan ditangani secara profesional untuk memastikan performa kendaraan selalu optimal.</p>
               <p>Setiap layanan dipastikan bergaransi dengan rincian biaya yang transparan.</p>
             </div>
 
-            {/* Tombol aksi dengan teks warna merah sama seperti portal masuk (rose-700) */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            {/* Tombol aksi dengan warna kuning kembali seperti semula */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-rose-700 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
               >
-                <CalendarCheck className="w-4 h-4 text-rose-700" />
+                <CalendarCheck className="w-4 h-4 text-stone-950" />
                 <span>Booking Servis Mobil</span>
               </a>
 
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-stone-800 text-rose-700 border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
+                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-stone-900/90 hover:bg-stone-800 text-amber-400 border border-amber-400/60 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
               >
-                <Gauge className="w-4 h-4 text-rose-700" />
+                <Gauge className="w-4 h-4 text-amber-400" />
                 <span>Masuk Dashboard</span>
               </Link>
             </div>
