@@ -86,7 +86,7 @@ export default function InvoicePrintPage() {
 
   const workshop = settings || {
     id: 1,
-    nama: 'Bengkel Cemerlang Jaya Motor',
+    nama: 'Bengkel Cemerlang Jaya',
     alamat: 'Jl. Raya Otista No. 123, Jakarta Timur',
     telepon: '0812-3456-7890',
     jam_buka: 'Senin - Sabtu: 08:00 - 17:00',

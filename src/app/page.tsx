@@ -241,51 +241,44 @@ export default async function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION: GearPro Big Banner Style with User's Uploaded Engine Repair Photo in HD */}
+      {/* HERO SECTION: GearPro Big Banner Style with User's Uploaded Engine Repair Photo */}
       <section className="relative bg-[#0F0D0C] text-white overflow-hidden">
-        {/* User uploaded natural mechanic repair photo as background in high resolution */}
+        {/* User uploaded natural mechanic repair photo as background - pas natural */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-mechanic-repair.jpg"
             alt="Perbaikan mesin mobil oleh teknisi profesional"
             fill
-            className="object-cover object-center brightness-90"
+            className="object-cover object-right sm:object-center opacity-45"
             priority
           />
-          {/* Multi-stop dark gradient overlay with warm amber & rose depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F0D0CF2] via-[#141211E6] to-[#1C191780]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0CB3]" />
+          {/* Subtle natural dark gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F0D0CF0] via-[#0F0D0CCC] to-[#0F0D0C66]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0C80]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 pt-28 pb-36 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-9 space-y-8 text-left">
-            {/* Pill teks tanpa ikon bintang/sparkle AI */}
-            <div className="inline-block px-4 py-1.5 rounded-full bg-stone-900/90 border border-amber-400/40 backdrop-blur-md">
-              <span className="text-amber-400 font-extrabold text-xs uppercase tracking-[0.25em]">
+        <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8 space-y-6 text-left">
+            {/* Pill teks */}
+            <div className="inline-block px-3.5 py-1.5 rounded-full bg-stone-900/80 border border-amber-400/40 backdrop-blur-md">
+              <span className="text-amber-400 font-bold text-xs uppercase tracking-wider">
                 QUALITY SERVICE • AUTO REPAIR
               </span>
             </div>
 
-            {/* Judul utama yang dibesarkan, spasi lega, dengan gradasi emas hangat tanpa garis merah */}
-            <div className="space-y-3">
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-[0.06em] leading-[1.12] uppercase font-sans">
-                REPAIR WITH CARE FOR
-              </h2>
-              <div className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-[0.08em] leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">
-                YOUR CAR
-              </div>
-            </div>
+            {/* Judul utama yang proporsional dan tidak maksa */}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-normal leading-[1.15] uppercase font-sans">
+              REPAIR WITH CARE <br />
+              FOR <span className="text-amber-400">YOUR CAR</span>
+            </h2>
 
-            <p className="text-stone-300 text-sm sm:text-lg leading-relaxed max-w-2xl font-normal pt-2">
-              Spesialis perawatan dan perbaikan suku cadang mobil: mesin, kampas & piringan cakram rem, spooring balancing roda depan, serta diagnosis sensor kelistrikan secara transparan dan bergaransi.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            {/* Tombol aksi */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
               >
                 <CalendarCheck className="w-4 h-4 text-stone-950" />
                 <span>Booking Servis Mobil</span>
@@ -293,7 +286,7 @@ export default async function HomePage() {
 
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
               >
                 <Gauge className="w-4 h-4 text-amber-400" />
                 <span>Masuk Dashboard</span>
@@ -304,9 +297,9 @@ export default async function HomePage() {
 
         {/* 4 Feature Columns Bar (Desain teks bersih tanpa ikon AI) */}
         <div className="relative z-20 border-t border-stone-800 bg-[#0F0D0C]/95 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HIGHLIGHT_FEATURES.map((item, idx) => (
-              <div key={idx} className="p-3 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-4">
+              <div key={idx} className="p-2 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-4">
                 <h3 className="font-extrabold text-amber-400 text-sm uppercase tracking-wider">
                   {item.title}
                 </h3>

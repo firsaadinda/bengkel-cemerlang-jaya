@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Bengkel Cemerlang Jaya Motor',
-  description: 'Aplikasi Manajemen Bengkel Cemerlang Jaya Motor - Sistem Pengelolaan Work Order, Inventory, dan Keuangan',
+  title: 'Bengkel Cemerlang Jaya',
+  description: 'Aplikasi Manajemen Bengkel Cemerlang Jaya - Sistem Pengelolaan Work Order, Inventory, dan Keuangan',
 }
 
 export default function RootLayout({
