@@ -58,22 +58,14 @@ export function VehicleTrackingCard() {
       <div className="absolute top-0 right-0 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header Widget */}
-      <div className="flex items-center justify-between gap-2 mb-3">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[11px] font-extrabold text-amber-400 uppercase tracking-wider">
-            Live Status Kendaraan
-          </span>
-        </div>
-        <span className="text-[10px] text-stone-400 font-medium">Update Real-time</span>
+      <div className="mb-2">
+        <h3 className="text-base sm:text-lg font-black text-white tracking-tight uppercase">
+          Cek Progres Servis Mobil
+        </h3>
+        <p className="text-xs text-stone-300 mt-0.5 leading-relaxed">
+          Pantau tahapan pengerjaan kendaraan Anda tanpa perlu menunggu di bengkel.
+        </p>
       </div>
-
-      <h3 className="text-base sm:text-lg font-black text-white tracking-tight uppercase">
-        Cek Progres Servis Mobil
-      </h3>
-      <p className="text-xs text-stone-300 mt-0.5 leading-relaxed">
-        Pantau tahapan pengerjaan kendaraan Anda tanpa perlu menunggu di bengkel.
-      </p>
 
       {/* Mode A: Jika Sudah Ada Hasil Pencarian */}
       {result ? (
@@ -223,28 +215,9 @@ export function VehicleTrackingCard() {
               </div>
             </div>
           )}
-
-          {/* Quick Chip Contoh Plat untuk Pengujian Langsung */}
-          <div className="pt-2 border-t border-stone-800/60 flex items-center justify-between text-[11px]">
-            <span className="text-stone-400">Coba plat demo:</span>
-            <div className="flex items-center gap-1.5">
-              {['B 1234 ABC', 'B 3456 CDE'].map((sample) => (
-                <button
-                  key={sample}
-                  type="button"
-                  onClick={() => {
-                    setPlatInput(sample)
-                    handleSearch(sample)
-                  }}
-                  className="px-2 py-0.5 rounded-md bg-stone-800 hover:bg-amber-400 hover:text-stone-950 text-amber-300 font-mono text-[10px] font-bold border border-stone-700/80 transition-colors"
-                >
-                  {sample}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       )}
     </div>
   )
 }
+
