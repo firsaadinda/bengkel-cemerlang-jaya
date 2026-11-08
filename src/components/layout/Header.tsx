@@ -29,3 +29,4 @@ export function Header({ profile, title }: HeaderProps) {
     </header>
   )
 }
+

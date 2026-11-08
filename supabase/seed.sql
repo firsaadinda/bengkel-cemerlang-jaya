@@ -354,3 +354,4 @@ insert into public.wo_status_history (work_order_id, dari_status, ke_status, cat
   ('10000000-0000-0000-0000-000000000001', 'dikerjakan', 'selesai', null, '33333333-3333-3333-3333-333333333333', now() - interval '20 days'),
   ('10000000-0000-0000-0000-000000000001', 'selesai', 'siap_diambil', 'QC Lulus', '33333333-3333-3333-3333-333333333333', now() - interval '20 days'),
   ('10000000-0000-0000-0000-000000000001', 'siap_diambil', 'diambil', 'Mobil diserahkan ke pelanggan', '22222222-2222-2222-2222-222222222222', now() - interval '19 days');
+

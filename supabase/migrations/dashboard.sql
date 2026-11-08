@@ -471,3 +471,4 @@ end;
 $$;
 revoke execute on function public.laporan_laba from public, anon;
 grant execute on function public.laporan_laba to authenticated;
+

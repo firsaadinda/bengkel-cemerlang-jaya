@@ -1560,3 +1560,4 @@ for insert with check (
 drop policy if exists "fotowo_storage_delete_owner" on storage.objects;
 create policy "fotowo_storage_delete_owner" on storage.objects
 for delete using (bucket_id = 'foto-wo' and private.peran_saya() = 'owner');
+

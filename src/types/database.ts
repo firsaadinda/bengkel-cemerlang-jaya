@@ -224,3 +224,4 @@ export interface WorkshopSettings {
   galeri_paths: string[]
   updated_at: string
 }
+

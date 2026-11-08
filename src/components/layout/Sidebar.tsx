@@ -114,3 +114,4 @@ export function Sidebar({ profile }: SidebarProps) {
     </aside>
   )
 }
+

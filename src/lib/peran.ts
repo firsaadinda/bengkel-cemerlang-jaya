@@ -90,3 +90,4 @@ export const ROLE_LABELS: Record<UserRole, string> = {
   admin: 'Admin Meja Depan',
   kepala_mekanik: 'Kepala Mekanik',
 }
+

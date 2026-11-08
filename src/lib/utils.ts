@@ -105,3 +105,4 @@ export const STATUS_WO_CONFIG: Record<
     desc: 'Dibatalkan dengan alasan',
   },
 }
+
