@@ -241,39 +241,42 @@ export default async function HomePage() {
         </div>
       </header>
 
-      {/* HERO SECTION: GearPro Big Banner Style with User's Uploaded Engine Repair Photo */}
+      {/* HERO SECTION: GearPro Big Banner Style with User's Uploaded Engine Repair Photo in HD */}
       <section className="relative bg-[#0F0D0C] text-white overflow-hidden">
-        {/* User uploaded natural mechanic repair photo as background */}
+        {/* User uploaded natural mechanic repair photo as background in high resolution */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-mechanic-repair.jpg"
-            alt="Perbaikan mesin mobil oleh mekanik profesional"
+            alt="Perbaikan mesin mobil oleh teknisi profesional"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center brightness-90"
             priority
           />
-          {/* Rich multi-stop dark gradient overlay with warm amber & rose depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0F0D0CEE] via-[#141211DD] to-[#1C191777]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0C99]" />
+          {/* Multi-stop dark gradient overlay with warm amber & rose depth */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F0D0CF2] via-[#141211E6] to-[#1C191780]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0D0C] via-transparent to-[#0F0D0CB3]" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 pt-24 pb-32 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-8 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/80 border border-amber-400/30 backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-amber-400 font-extrabold text-[11px] uppercase tracking-[0.2em]">
-                Quality Service • Auto Repair
+        <div className="max-w-7xl mx-auto px-6 pt-28 pb-36 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-9 space-y-8 text-left">
+            {/* Pill teks tanpa ikon bintang/sparkle AI */}
+            <div className="inline-block px-4 py-1.5 rounded-full bg-stone-900/90 border border-amber-400/40 backdrop-blur-md">
+              <span className="text-amber-400 font-extrabold text-xs uppercase tracking-[0.25em]">
+                QUALITY SERVICE • AUTO REPAIR
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-wide leading-[1.12] uppercase font-sans">
-              REPAIR WITH CARE FOR{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 underline decoration-rose-600 decoration-4 underline-offset-8">
+            {/* Judul utama yang dibesarkan, spasi lega, dengan gradasi emas hangat tanpa garis merah */}
+            <div className="space-y-3">
+              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-[0.06em] leading-[1.12] uppercase font-sans">
+                REPAIR WITH CARE FOR
+              </h2>
+              <div className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-[0.08em] leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">
                 YOUR CAR
-              </span>
-            </h2>
+              </div>
+            </div>
 
-            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal pt-1">
+            <p className="text-stone-300 text-sm sm:text-lg leading-relaxed max-w-2xl font-normal pt-2">
               Spesialis perawatan dan perbaikan suku cadang mobil: mesin, kampas & piringan cakram rem, spooring balancing roda depan, serta diagnosis sensor kelistrikan secara transparan dan bergaransi.
             </p>
 
@@ -282,7 +285,7 @@ export default async function HomePage() {
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
               >
                 <CalendarCheck className="w-4 h-4 text-stone-950" />
                 <span>Booking Servis Mobil</span>
@@ -290,7 +293,7 @@ export default async function HomePage() {
 
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-stone-900/90 hover:bg-rose-700 text-white border border-stone-700 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
               >
                 <Gauge className="w-4 h-4 text-amber-400" />
                 <span>Masuk Dashboard</span>
@@ -299,27 +302,19 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* 4 Feature Columns Bar (Seperti bar 4 icon GearPro di bawah hero) */}
+        {/* 4 Feature Columns Bar (Desain teks bersih tanpa ikon AI) */}
         <div className="relative z-20 border-t border-stone-800 bg-[#0F0D0C]/95 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HIGHLIGHT_FEATURES.map((item, idx) => {
-              const Icon = item.icon
-              return (
-                <div key={idx} className="flex items-start gap-4 p-3 rounded-xl hover:bg-stone-900/60 transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center shrink-0 border border-amber-400/20">
-                    <Icon className="w-6 h-6 stroke-[1.8]" />
-                  </div>
-                  <div>
-                    <h3 className="font-extrabold text-white text-sm uppercase tracking-wide">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-stone-400 mt-1 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              )
-            })}
+          <div className="max-w-7xl mx-auto px-6 py-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HIGHLIGHT_FEATURES.map((item, idx) => (
+              <div key={idx} className="p-3 border-l-2 border-amber-400/80 hover:bg-stone-900/60 transition-colors pl-4">
+                <h3 className="font-extrabold text-amber-400 text-sm uppercase tracking-wider">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-stone-300 mt-1 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -368,31 +363,23 @@ export default async function HomePage() {
               Bengkel Cemerlang Jaya hadir memberikan solusi pemeliharaan kendaraan roda empat secara presisi. Mulai dari pengecekan pelumasan mesin, sistem pengereman, transmisi, hingga geometri roda demi keamanan dan kenyamanan berkendara Anda sekeluarga.
             </p>
 
-            {/* Checklist */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
-                  ✓
-                </div>
-                <span className="text-xs font-bold text-stone-800">100% Suku Cadang Original & Terdaftar</span>
+            {/* Checklist tanpa icon bulat kartun */}
+            <div className="space-y-3.5 pt-2 border-l-2 border-amber-400 pl-4">
+              <div>
+                <span className="text-xs font-bold text-stone-900 block">100% Suku Cadang Original & Terdaftar</span>
+                <span className="text-[11px] text-stone-500">Komponen bergaransi langsung dari distributor terpercaya.</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
-                  ✓
-                </div>
-                <span className="text-xs font-bold text-stone-800">Checklist Quality Control 15 Titik Kendaraan</span>
+              <div>
+                <span className="text-xs font-bold text-stone-900 block">Checklist Quality Control 15 Titik Kendaraan</span>
+                <span className="text-[11px] text-stone-500">Inspeksi menyeluruh sebelum kendaraan diserahterimakan.</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
-                  ✓
-                </div>
-                <span className="text-xs font-bold text-stone-800">Nota Tagihan Digital Transparan Tanpa Biaya Siluman</span>
+              <div>
+                <span className="text-xs font-bold text-stone-900 block">Nota Tagihan Digital Transparan</span>
+                <span className="text-[11px] text-stone-500">Rincian sparepart dan ongkos kerja jelas tanpa biaya siluman.</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xs font-black">
-                  ✓
-                </div>
-                <span className="text-xs font-bold text-stone-800">Garansi Pengerjaan Servis 14 Hari Kerja</span>
+              <div>
+                <span className="text-xs font-bold text-stone-900 block">Garansi Pengerjaan Servis 14 Hari Kerja</span>
+                <span className="text-[11px] text-stone-500">Jaminan bebas biaya revisi pengerjaan jika ada kendala pasca servis.</span>
               </div>
             </div>
 

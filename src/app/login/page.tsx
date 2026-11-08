@@ -120,27 +120,18 @@ function LoginForm() {
           </div>
 
           <div className="relative z-10 space-y-4 pt-10 border-t border-stone-800">
-            <div className="flex items-start gap-3">
-              <div className="p-1 rounded-md bg-rose-500/20 text-rose-300 shrink-0 mt-0.5">
-                <CheckCircle2 className="w-4 h-4" />
-              </div>
-              <p className="text-xs text-stone-300 font-medium leading-relaxed">
+            <div className="border-l-2 border-rose-500 pl-3">
+              <p className="text-xs text-stone-200 font-medium leading-relaxed">
                 Pencatatan Work Order digital dan tracking progres pengerjaan mobil harian.
               </p>
             </div>
-            <div className="flex items-start gap-3">
-              <div className="p-1 rounded-md bg-amber-500/20 text-amber-300 shrink-0 mt-0.5">
-                <Sparkles className="w-4 h-4" />
-              </div>
-              <p className="text-xs text-stone-300 font-medium leading-relaxed">
+            <div className="border-l-2 border-amber-400 pl-3">
+              <p className="text-xs text-stone-200 font-medium leading-relaxed">
                 Stok sparepart otomatis terpotong saat mobil dikerjakan (metode FIFO).
               </p>
             </div>
-            <div className="flex items-start gap-3">
-              <div className="p-1 rounded-md bg-emerald-500/20 text-emerald-300 shrink-0 mt-0.5">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <p className="text-xs text-stone-300 font-medium leading-relaxed">
+            <div className="border-l-2 border-emerald-500 pl-3">
+              <p className="text-xs text-stone-200 font-medium leading-relaxed">
                 Laporan laba kotor, invoice otomatis, dan QC test drive terstandarisasi.
               </p>
             </div>
