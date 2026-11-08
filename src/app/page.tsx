@@ -178,13 +178,17 @@ export default async function HomePage() {
       {/* Header Navigation (GearPro Inspired Brand Layout) */}
       <header className="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo Bengkel: Modern Automotive Hexagon Gear & Monogram */}
+          {/* Logo Bengkel: Mobil Sport Siluet Merah Transparan tanpa background putih */}
           <div className="flex items-center gap-3.5">
-            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-stone-900 to-stone-950 flex items-center justify-center text-amber-400 border border-stone-800 shadow-md">
-              {/* Modern geometric automotive badge */}
-              <div className="absolute inset-1 rounded-lg border border-amber-400/30 flex items-center justify-center">
-                <span className="font-black text-amber-400 text-base tracking-tighter">CJ</span>
-              </div>
+            <div className="relative w-16 h-9 flex items-center justify-center shrink-0">
+              <Image
+                src="/images/logo-car-silhouette.svg"
+                alt="Logo Bengkel Cemerlang Jaya"
+                width={70}
+                height={35}
+                className="w-full h-auto object-contain"
+                priority
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -260,21 +264,21 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-8 space-y-6 text-left">
+        <div className="max-w-7xl mx-auto px-6 pt-12 pb-16 md:pt-14 md:pb-20 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-11 space-y-5 text-left">
             {/* Judul utama yang proporsional dan tidak maksa */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-normal leading-[1.15] uppercase font-sans">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-normal leading-[1.12] uppercase font-sans">
               REPAIR WITH CARE <br />
               FOR <span className="text-amber-400">YOUR CAR</span>
             </h2>
 
-            {/* Deskripsi Bengkel tanpa tanda titik dua */}
-            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+            {/* Deskripsi Bengkel tanpa tanda titik dua dipanjangkan */}
+            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-4xl font-normal">
               Bengkel Cemerlang Jaya melayani servis berkala perawatan mesin ganti oli transmisi sistem rem kaki-kaki dan kelistrikan mobil secara profesional bergaransi dan transparan
             </p>
 
             {/* Tombol aksi */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-1">
               <a
                 href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
                 target="_blank"
@@ -542,8 +546,14 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-stone-900 to-stone-950 border border-stone-700 flex items-center justify-center text-amber-400 font-black text-sm">
-                CJ
+              <div className="w-14 h-8 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/logo-car-silhouette.svg"
+                  alt="Logo Bengkel Cemerlang Jaya"
+                  width={60}
+                  height={30}
+                  className="w-full h-auto object-contain brightness-200"
+                />
               </div>
               <h4 className="text-white font-black text-lg tracking-tight uppercase">
                 BENGKEL CEMERLANG JAYA

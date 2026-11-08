@@ -107,8 +107,15 @@ function LoginForm() {
             </Link>
 
             <div className="mt-12">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-stone-900 to-stone-950 border border-stone-700 flex items-center justify-center text-amber-400 font-black text-lg shadow-lg mb-4 ring-2 ring-amber-400/30">
-                CJ
+              <div className="w-20 h-10 mb-3 flex items-center justify-start">
+                <Image
+                  src="/images/logo-car-silhouette.svg"
+                  alt="Logo Bengkel Cemerlang Jaya"
+                  width={80}
+                  height={40}
+                  className="w-full h-auto object-contain brightness-150"
+                  priority
+                />
               </div>
               <h2 className="text-2xl font-black tracking-tight text-white uppercase">
                 Bengkel Cemerlang Jaya

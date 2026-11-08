@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" fill="none">
+  <!-- Red Roof Curve & Hood -->
+  <path d="M80 115 C130 85 225 75 315 105 C265 98 225 102 215 110 C265 116 355 114 425 132 C385 120 330 118 285 125 C230 135 150 120 80 115 Z" fill="#DC2626"/>
+  <!-- Red Side Mirror -->
+  <rect x="282" y="106" width="16" height="8" rx="2" fill="#DC2626"/>
+  <rect x="294" y="114" width="3" height="5" fill="#DC2626"/>
+  <!-- Red Rear Tail Fin -->
+  <path d="M80 115 L80 145 C85 140 95 130 110 125 L100 120 Z" fill="#DC2626"/>
+  <!-- Dark Charcoal / Grey Wheel Arches & Undercarriage -->
+  <path d="M93 145 C105 125 155 125 167 145" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+  <path d="M170 137 L330 137" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+  <path d="M333 145 C345 125 395 125 407 145" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+</svg>

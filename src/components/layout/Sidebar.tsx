@@ -54,8 +54,12 @@ export function Sidebar({ profile }: SidebarProps) {
       <div>
         {/* Brand / Logo */}
         <div className="p-5 flex items-center gap-3 border-b border-[#EAF2FA]">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-stone-900 to-stone-950 border border-stone-700 flex items-center justify-center text-amber-400 font-black text-sm shadow-sm ring-1 ring-amber-400/30">
-            CJ
+          <div className="w-16 h-8 flex items-center justify-center shrink-0">
+            <img
+              src="/images/logo-car-silhouette.svg"
+              alt="Logo Bengkel Cemerlang Jaya"
+              className="w-full h-auto object-contain"
+            />
           </div>
           <div>
             <h1 className="font-bold text-sm tracking-tight text-stone-900 uppercase">Cemerlang Jaya</h1>
