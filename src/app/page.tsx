@@ -235,18 +235,19 @@ export default async function HomePage() {
 
       {/* HERO SECTION: GearPro Big Banner Style with Full-Bleed Dark Viewport */}
       <section className="relative bg-[#141211] text-white overflow-hidden min-h-[calc(100vh-115px)] flex flex-col justify-between">
-        {/* User uploaded natural mechanic repair photo as background - lebih terang & hidup */}
+        {/* High-Definition Mechanic Repair Background (Ultra Sharp, Uncompressed) */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-mechanic-repair.jpg"
-            alt="Perbaikan mesin mobil oleh teknisi profesional"
+            alt="Perbaikan mesin mobil oleh teknisi profesional di bawah kap mesin"
             fill
-            className="object-cover object-right sm:object-center opacity-65"
+            unoptimized
+            className="object-cover object-right sm:object-center opacity-70"
             priority
           />
-          {/* Subtle natural dark gradient yang lebih lembut agar foto bengkel bernafas */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#141211E6] via-[#14121199] to-[#14121133]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141211] via-transparent to-[#14121160]" />
+          {/* Subtle natural dark gradient yang lembut agar foto tajam tetap terlihat jelas */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#141211EE] via-[#14121190] to-[#14121130]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141211] via-transparent to-[#14121150]" />
         </div>
 
         {/* 4 Feature Columns Bar di bagian atas banner hero */}
