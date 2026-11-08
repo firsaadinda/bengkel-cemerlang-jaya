@@ -26,6 +26,7 @@ import {
 import { createClient } from '@/lib/supabase/server'
 import { InventoryItem, WorkshopSettings } from '@/types/database'
 import { formatRupiah } from '@/lib/utils'
+import { VehicleTrackingCard } from '@/components/landing/VehicleTrackingCard'
 
 // Layanan servis mobil berfokus murni pada suku cadang & komponen mobil (tanpa foto orang/mekanik)
 const FEATURED_SERVICES = [
@@ -264,42 +265,50 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Hero content utama yang dinaikkan ke atas agar fit pas dan tidak memotong bagian bawah */}
-        <div className="max-w-7xl mx-auto px-6 pt-4 pb-8 md:pt-6 md:pb-10 relative z-10 w-full flex-1 flex flex-col justify-center">
-          <div className="w-full space-y-3.5 text-left">
-            {/* Judul utama yang proporsional */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-normal leading-[1.12] uppercase font-sans">
-              REPAIR WITH CARE <br />
-              FOR <span className="text-amber-400">YOUR CAR</span>
-            </h2>
+        {/* Hero content utama: 2 Kolom Seimbang (Kiri: Headline & Tombol, Kanan: Widget Live Tracking Plat Nomor) */}
+        <div className="max-w-7xl mx-auto px-6 pt-5 pb-8 md:pt-6 md:pb-10 relative z-10 w-full flex-1 flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Kolom Kiri: Headline, Deskripsi 4 Baris & Tombol Aksi */}
+            <div className="lg:col-span-7 space-y-3.5 text-left">
+              {/* Judul utama yang proporsional */}
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-normal leading-[1.12] uppercase font-sans">
+                REPAIR WITH CARE <br />
+                FOR <span className="text-amber-400">YOUR CAR</span>
+              </h2>
 
-            {/* Deskripsi Bengkel dalam 4 baris rapi */}
-            <div className="text-stone-300 text-xs sm:text-sm leading-relaxed space-y-1 font-normal max-w-3xl">
-              <p>Bengkel Cemerlang Jaya melayani servis berkala dan perawatan mesin mobil.</p>
-              <p>Pengerjaan meliputi ganti oli, perawatan transmisi, sistem rem, suspensi, dan sistem elektrikal.</p>
-              <p>Seluruh perbaikan ditangani secara profesional untuk memastikan performa kendaraan selalu optimal.</p>
-              <p>Setiap layanan dipastikan bergaransi dengan rincian biaya yang transparan.</p>
+              {/* Deskripsi Bengkel dalam 4 baris rapi */}
+              <div className="text-stone-300 text-xs sm:text-sm leading-relaxed space-y-1 font-normal max-w-2xl">
+                <p>Bengkel Cemerlang Jaya melayani servis berkala dan perawatan mesin mobil.</p>
+                <p>Pengerjaan meliputi ganti oli, perawatan transmisi, sistem rem, suspensi, dan sistem elektrikal.</p>
+                <p>Seluruh perbaikan ditangani secara profesional untuk memastikan performa kendaraan selalu optimal.</p>
+                <p>Setiap layanan dipastikan bergaransi dengan rincian biaya yang transparan.</p>
+              </div>
+
+              {/* Tombol aksi dengan warna kuning kembali seperti semula */}
+              <div className="flex flex-wrap items-center gap-4 pt-1.5">
+                <a
+                  href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
+                >
+                  <CalendarCheck className="w-4 h-4 text-stone-950" />
+                  <span>Booking Servis Mobil</span>
+                </a>
+
+                <Link
+                  href="/login"
+                  className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-stone-900/90 hover:bg-stone-800 text-amber-400 border border-amber-400/60 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
+                >
+                  <Gauge className="w-4 h-4 text-amber-400" />
+                  <span>Masuk Dashboard</span>
+                </Link>
+              </div>
             </div>
 
-            {/* Tombol aksi dengan warna kuning kembali seperti semula */}
-            <div className="flex flex-wrap items-center gap-4 pt-1.5">
-              <a
-                href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}?text=Halo%20Bengkel%20Cemerlang%20Jaya,%20saya%20mau%20booking%20jadwal%20servis%20mobil`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-400/20 hover:scale-[1.02]"
-              >
-                <CalendarCheck className="w-4 h-4 text-stone-950" />
-                <span>Booking Servis Mobil</span>
-              </a>
-
-              <Link
-                href="/login"
-                className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-xl bg-stone-900/90 hover:bg-stone-800 text-amber-400 border border-amber-400/60 font-bold text-xs uppercase tracking-wider transition-all backdrop-blur-sm"
-              >
-                <Gauge className="w-4 h-4 text-amber-400" />
-                <span>Masuk Dashboard</span>
-              </Link>
+            {/* Kolom Kanan: Widget Cek Status Pengerjaan Mobil (Live Tracking) */}
+            <div className="lg:col-span-5 w-full">
+              <VehicleTrackingCard />
             </div>
           </div>
         </div>
