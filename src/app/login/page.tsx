@@ -221,55 +221,55 @@ function LoginForm() {
           {/* Quick Demo Login Buttons */}
           <div className="mt-8 pt-6 border-t border-stone-100">
             <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-2.5">
-              Akses Cepat Demo (Klik untuk Isi Otomatis)
+              Akses Cepat Demo Sesuai PRD (Klik untuk Isi Otomatis)
             </p>
             <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
-                onClick={() => fillQuickAccount('owner@bengkel.com')}
+                onClick={() => fillQuickAccount('owner@cemerlangjaya.test')}
                 className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Owner</span>
+                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Pak Darto (Owner)</span>
                   <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Lengkap</span>
                 </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">owner@bengkel.com</span>
+                <span className="text-[10px] text-stone-400 block truncate mt-0.5">owner@cemerlangjaya.test</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => fillQuickAccount('sa@bengkel.com')}
+                onClick={() => fillQuickAccount('admin@cemerlangjaya.test')}
                 className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Service Advisor</span>
-                  <span className="text-[10px] bg-rose-100 text-rose-800 border border-rose-200 px-1.5 py-0.5 rounded-full font-bold">WO & QC</span>
+                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Rina (Admin)</span>
+                  <span className="text-[10px] bg-rose-100 text-rose-800 border border-rose-200 px-1.5 py-0.5 rounded-full font-bold">WO & Kasir</span>
                 </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">sa@bengkel.com</span>
+                <span className="text-[10px] text-stone-400 block truncate mt-0.5">admin@cemerlangjaya.test</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => fillQuickAccount('kasir@bengkel.com')}
+                onClick={() => fillQuickAccount('joko@cemerlangjaya.test')}
                 className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Kasir</span>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-200 px-1.5 py-0.5 rounded-full font-bold">Bayar</span>
+                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Pak Joko (Tim A)</span>
+                  <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Mekanik</span>
                 </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">kasir@bengkel.com</span>
+                <span className="text-[10px] text-stone-400 block truncate mt-0.5">joko@cemerlangjaya.test</span>
               </button>
 
               <button
                 type="button"
-                onClick={() => fillQuickAccount('kepala@bengkel.com')}
+                onClick={() => fillQuickAccount('slamet@cemerlangjaya.test')}
                 className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Kepala Mekanik</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Tim</span>
+                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Pak Slamet (Tim B)</span>
+                  <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Mekanik</span>
                 </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">kepala@bengkel.com</span>
+                <span className="text-[10px] text-stone-400 block truncate mt-0.5">slamet@cemerlangjaya.test</span>
               </button>
             </div>
           </div>

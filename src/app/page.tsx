@@ -173,19 +173,13 @@ export default async function HomePage() {
             </span>
           </div>
           <div className="flex items-center gap-5">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-amber-300 font-bold uppercase tracking-wider text-[11px]">
-                100% Result Guarantee
-              </span>
-            </span>
             <a
               href={`https://wa.me/${workshop.telepon.replace(/[^0-9]/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-amber-400 hover:text-amber-300 font-bold"
             >
-              Hotline: {workshop.telepon}
+              Kontak: {workshop.telepon}
             </a>
           </div>
         </div>
@@ -259,18 +253,16 @@ export default async function HomePage() {
 
         <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-6 text-left">
-            {/* Pill teks */}
-            <div className="inline-block px-3.5 py-1.5 rounded-full bg-stone-900/80 border border-amber-400/40 backdrop-blur-md">
-              <span className="text-amber-400 font-bold text-xs uppercase tracking-wider">
-                QUALITY SERVICE • AUTO REPAIR
-              </span>
-            </div>
-
             {/* Judul utama yang proporsional dan tidak maksa */}
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-normal leading-[1.15] uppercase font-sans">
               REPAIR WITH CARE <br />
               FOR <span className="text-amber-400">YOUR CAR</span>
             </h2>
+
+            {/* Deskripsi Bengkel tanpa tanda titik dua */}
+            <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+              Bengkel Cemerlang Jaya melayani servis berkala perawatan mesin ganti oli transmisi sistem rem kaki-kaki dan kelistrikan mobil secara profesional bergaransi dan transparan
+            </p>
 
             {/* Tombol aksi */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
