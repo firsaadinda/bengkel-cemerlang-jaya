@@ -4,7 +4,7 @@ import React, { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Car, Lock, Mail, AlertCircle, ArrowLeft, ShieldCheck, CheckCircle2, Sparkles } from 'lucide-react'
+import { Lock, Mail, AlertCircle, ArrowLeft, Eye, EyeOff, Info } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
@@ -17,11 +17,12 @@ function LoginForm() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [errorMsg, setErrorMsg] = useState(
     errorParam === 'nonaktif'
-      ? 'Akunmu dinonaktifkan. Hubungi Owner.'
+      ? 'Akun Anda dinonaktifkan. Silakan hubungi Administrator atau Owner Bengkel.'
       : errorParam === 'unauthorized'
-      ? 'Halaman ini tidak tersedia untuk peranmu.'
+      ? 'Halaman ini tidak dapat diakses untuk peran akun Anda.'
       : ''
   )
   const [isLoading, setIsLoading] = useState(false)
@@ -145,8 +146,8 @@ function LoginForm() {
           </div>
         </div>
 
-        {/* Right Column: Login Form & Demo Credentials */}
-        <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between bg-white">
+        {/* Right Column: Real Production Login Form */}
+        <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center bg-white">
           <div>
             <div className="flex items-center justify-between lg:hidden mb-6">
               <Link
@@ -161,12 +162,12 @@ function LoginForm() {
               </span>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-8">
               <h1 className="text-2xl font-black text-stone-900 tracking-tight">
                 Portal Masuk Karyawan
               </h1>
-              <p className="text-xs sm:text-sm text-stone-500 mt-1">
-                Silakan masuk dengan kredensial staf atau klik salah satu akun demo di bawah.
+              <p className="text-xs sm:text-sm text-stone-500 mt-1.5">
+                Silakan masuk dengan akun terdaftar untuk mengakses sistem operasional bengkel.
               </p>
             </div>
 
@@ -177,7 +178,7 @@ function LoginForm() {
               </div>
             )}
 
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-5">
               <div>
                 <label className="block text-xs font-bold text-stone-700 mb-1.5">
                   Alamat Email
@@ -189,7 +190,7 @@ function LoginForm() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="nama@bengkel.com"
+                    placeholder="nama@cemerlangjaya.com"
                     className="pl-10 text-xs sm:text-sm h-11 rounded-xl border-stone-200 focus:border-rose-700 focus:ring-rose-700"
                   />
                 </div>
@@ -200,85 +201,48 @@ function LoginForm() {
                   <label className="text-xs font-bold text-stone-700">
                     Kata Sandi
                   </label>
-                  <span className="text-[11px] text-stone-400">Default: Bengkel123!</span>
                 </div>
                 <div className="relative">
                   <Lock className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <Input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="pl-10 text-xs sm:text-sm h-11 rounded-xl border-stone-200 focus:border-rose-700 focus:ring-rose-700"
+                    placeholder="Masukkan kata sandi Anda"
+                    className="pl-10 pr-11 text-xs sm:text-sm h-11 rounded-xl border-stone-200 focus:border-rose-700 focus:ring-rose-700"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 transition-colors p-1"
+                    title={showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+
+                {/* Petunjuk Persyaratan Keamanan Kata Sandi */}
+                <div className="mt-2.5 flex items-start gap-1.5 text-[11px] text-stone-500 leading-relaxed bg-stone-50 border border-stone-200/80 rounded-lg p-2.5">
+                  <Info className="w-3.5 h-3.5 text-stone-400 shrink-0 mt-0.5" />
+                  <span>
+                    Kata sandi wajib minimal <strong>8 karakter</strong> serta memuat kombinasi <strong>huruf besar/kecil (abjad)</strong>, <strong>angka</strong>, dan <strong>simbol khusus</strong>.
+                  </span>
                 </div>
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-11 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold text-sm shadow-md shadow-rose-900/20 transition-all mt-2"
+                className="w-full h-11 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold text-sm shadow-md shadow-rose-900/20 transition-all mt-4"
               >
                 {isLoading ? 'Memverifikasi...' : 'Masuk ke Sistem'}
               </Button>
             </form>
-          </div>
-
-          {/* Quick Demo Login Buttons */}
-          <div className="mt-8 pt-6 border-t border-stone-100">
-            <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider mb-2.5">
-              Akses Cepat Demo Sesuai PRD (Klik untuk Isi Otomatis)
-            </p>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => fillQuickAccount('owner@cemerlangjaya.test')}
-                className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Pak Darto (Owner)</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Lengkap</span>
-                </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">owner@cemerlangjaya.test</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillQuickAccount('admin@cemerlangjaya.test')}
-                className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Rina (Admin)</span>
-                  <span className="text-[10px] bg-rose-100 text-rose-800 border border-rose-200 px-1.5 py-0.5 rounded-full font-bold">WO & Kasir</span>
-                </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">admin@cemerlangjaya.test</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillQuickAccount('joko@cemerlangjaya.test')}
-                className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Pak Joko (Tim A)</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Mekanik</span>
-                </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">joko@cemerlangjaya.test</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillQuickAccount('slamet@cemerlangjaya.test')}
-                className="text-left p-2.5 rounded-xl border border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 transition-all group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-800 group-hover:text-rose-800">Pak Slamet (Tim B)</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-800 border border-amber-300 px-1.5 py-0.5 rounded-full font-bold">Mekanik</span>
-                </div>
-                <span className="text-[10px] text-stone-400 block truncate mt-0.5">slamet@cemerlangjaya.test</span>
-              </button>
-            </div>
           </div>
         </div>
 
